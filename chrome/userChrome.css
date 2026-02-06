@@ -1,0 +1,127 @@
+/* ===============================
+   VOIDFOX – MAXIMUM OVERGLOW
+   =============================== */
+
+* {
+  font-family: "JetBrains Mono", "Fira Code", monospace !important;
+  font-size: 12px !important;
+  border-radius: 0 !important;
+}
+
+:root {
+  --bg: #1a1b26;
+  --bg-dark: #16161e;
+  --fg: #c0caf5;
+  --accent: #7aa2f7;
+  --border: #292e42;
+  /* INCREASED OPACITY FOR OVERGLOW */
+  --glow-bright: rgba(122, 162, 247, 1); 
+  --transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 1. URL BAR: HIGH-INTENSITY FADE */
+#urlbar {
+  margin-inline: auto !important;
+  width: 550px !important;
+  background: var(--bg-dark) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--fg) !important;
+  transition: 
+    width var(--transition), 
+    border-color var(--transition), 
+    box-shadow var(--transition) !important;
+}
+
+#urlbar:hover {
+  border-color: var(--accent) !important;
+  /* STACKED SHADOW FOR DEEPER GLOW */
+  box-shadow: 0 0 20px rgba(122, 162, 247, 0.4), 0 0 40px rgba(122, 162, 247, 0.1) !important; 
+}
+
+#urlbar[focused="true"] {
+  width: 85% !important;
+  border-color: var(--accent) !important;
+  animation: themedPulse 3s infinite ease-in-out !important; 
+}
+
+@keyframes themedPulse {
+  0% { box-shadow: 0 0 15px rgba(122, 162, 247, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(122, 162, 247, 0.7), 0 0 70px rgba(122, 162, 247, 0.2); }
+  100% { box-shadow: 0 0 15px rgba(122, 162, 247, 0.3); }
+}
+
+/* 2. BUTTONS: DOUBLE-STACKED NEON */
+.toolbarbutton-1 .toolbarbutton-icon {
+  fill: var(--fg) !important;
+  transition: filter var(--transition), fill var(--transition), transform 0.2s ease !important;
+  filter: drop-shadow(0 0 0px transparent) !important;
+}
+
+.toolbarbutton-1:hover .toolbarbutton-icon {
+  fill: #ffffff !important; /* Brighter white core for icons */
+  /* TRIPLE SHADOW FOR NUCLEAR GLOW */
+  filter: 
+    drop-shadow(0 0 2px var(--accent)) 
+    drop-shadow(0 0 8px var(--glow-bright))
+    drop-shadow(0 0 15px var(--accent)) !important;
+}
+
+/* 3. TABS: NEON TOP-BAR */
+.tabbrowser-tab[selected] .tab-background {
+  background-color: transparent !important;
+  border-top: 3px solid var(--accent) !important; /* Thicker line */
+  background-image: linear-gradient(to bottom, rgba(122, 162, 247, 0.3), transparent) !important;
+  filter: drop-shadow(0 0 5px var(--accent)) !important;
+}
+
+/* 4. PURGE GRAY BOXES */
+.toolbarbutton-1, 
+.toolbarbutton-1 > .toolbarbutton-icon, 
+.toolbarbutton-1 > .toolbarbutton-badge-stack {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* 5. CENTER LOCK & HUD */
+#nav-bar-customization-target { display: flex !important; width: 100% !important; }
+#urlbar-container { flex: 1 !important; display: flex !important; justify-content: center !important; }
+
+.urlbarView {
+  background: var(--bg-dark) !important;
+  border: 2px solid var(--accent) !important; /* Thicker HUD border */
+  position: fixed !important;
+  top: 45px !important; 
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 85% !important;
+  box-shadow: 0 0 50px rgba(122, 162, 247, 0.4) !important;
+  animation: unfold 0.6s var(--transition) !important;
+}
+
+@keyframes unfold {
+  from { opacity: 0; transform: translateX(-50%) translateY(-10px) scaleY(0.8); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0) scaleY(1); }
+}
+
+/* Forces all browser popups and panels to stay opaque and solid */
+panel, 
+.panel-arrowcontent, 
+#notification-popup,
+#addon-webext-permissions-notification {
+  background-color: #1a1b26 !important; /* Matches your Tokyo Night BG */
+  opacity: 1 !important;
+  filter: none !important;
+  border: 1px solid var(--accent) !important;
+}
+
+/* Fixes text visibility inside the transparent menus */
+#addon-webext-permissions-notification .popup-notification-description,
+#addon-webext-permissions-notification .popup-notification-header-text {
+  color: #c0caf5 !important;
+  opacity: 1 !important;
+}
+
+/* 6. CLEANUP */
+#identity-box, #home-button, #star-button { display: none !important; }
+#PanelUI-button { order: 100 !important; }

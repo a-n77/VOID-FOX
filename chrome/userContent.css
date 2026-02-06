@@ -1,0 +1,93 @@
+/* ================================
+   TOKYO NIGHT – CONTENT SELECTION
+   ================================ */
+
+::selection {
+  background-color: transparent !important;
+  color: #c0caf5 !important;
+  text-shadow: 0 0 6px #7aa2f7 !important;
+}
+
+*::-moz-selection {
+  background-color: transparent !important;
+  color: #c0caf5 !important;
+  text-shadow: 0 0 6px #7aa2f7 !important;
+}
+
+input::selection,
+textarea::selection {
+  background-color: rgba(122, 162, 247, 0.2) !important;
+  color: #c0caf5 !important;
+  text-shadow: 0 0 6px #7aa2f7 !important;
+}
+
+/* ================================
+            VOIDFOX ASCII
+   ================================ */
+
+/* Specific targeting for the blank startup page and new tabs */
+@-moz-document url("about:blank"), url("about:newtab"), url("about:home"), url("about:welcome") {
+  
+  /* 1. INSTANT ROOT LOCKDOWN - Forces the theme before the page body exists */
+  :root, html {
+    background-color: #1a1b26 !important;
+  }
+
+  html, body {
+    height: 100vh !important;
+    width: 100vw !important;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+  }
+
+  /* 2. PURGE BROWSER CONTENT - Prevents search bar flickering */
+  body > * {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  /* 3. THE ASCII - ATTACHED TO HTML FOR INSTANT RENDER ON STARTUP */
+  html::before {
+    content: " ___     ___  ______    __     ________       ___  ___  _______    ______  ___  ___ \A|\"  \\    /\"  |/    \" \\  |\" \\    |\"      \"\\     /\"  |/\"  |/\"      \"| /    \" \\|\"  \\/\"  | \A \\   \\  //  /// ____  \\ ||  |   (.  ___  :)   /  ///  //(: ______)// ____  \\\\   \\  /  \A  \\\\  \\/. .//  /    ) :)|:  |   |: \\   ) ||  /'  //  /  \\/    | /  /    ) :)\\\\  \\/   \A   \\.    //(: (____/ // |.  |   (| (___\\ || //  ///  /    // ___)(: (____/ // /\\.  \\   \A    \\\\   /  \\        /  /\\  |\\ |:        :)/  ///  //    (:  (    \\        / /  \\   \\  \A     \\__/    \"_____/  (__\\_|_)(________/|___/|___/      \\__/     \"_____/ |___/\\___|" !important;
+    
+    white-space: pre !important;
+    position: fixed !important;
+    z-index: 99999 !important;
+    
+    /* Perfect Center */
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 14px !important;
+    color: #7aa2f7 !important;
+    text-align: center !important;
+    pointer-events: none !important;
+
+    /* 4. STATIC HIGH-INTENSITY GLOW - Optimized for 31.6% CPU */
+    text-shadow: 
+      0 0 10px #7aa2f7, 
+      0 0 25px #7aa2f7, 
+      0 0 45px rgba(122, 162, 247, 0.6),
+      0 0 70px rgba(122, 162, 247, 0.3) !important;
+    
+    /* FAST FADE-IN RESTORED (Runs once on load) */
+    animation: fastEntrance 0.6s ease-out forwards !important;
+  }
+}
+
+@keyframes fastEntrance {
+  0% { 
+    opacity: 0; 
+    transform: translate(-50%, -48%) scale(0.95); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1); 
+  }
+}
